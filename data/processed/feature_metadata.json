@@ -1,0 +1,101 @@
+{
+  "source": "data/raw/titanic.csv (vendored, datasciencedojo/datasets)",
+  "random_state": 42,
+  "split": {
+    "train": 623,
+    "val": 134,
+    "test": 134,
+    "stratified_on": "Survived"
+  },
+  "missingness_raw": {
+    "PassengerId": 0,
+    "Survived": 0,
+    "Pclass": 0,
+    "Name": 0,
+    "Sex": 0,
+    "Age": 177,
+    "SibSp": 0,
+    "Parch": 0,
+    "Ticket": 0,
+    "Fare": 0,
+    "Cabin": 687,
+    "Embarked": 2
+  },
+  "cleaning_decisions": {
+    "Age": "imputed with median of (Pclass, Sex) group learned on train; global median fallback for unseen groups",
+    "Embarked": "imputed with train mode ('S')",
+    "Cabin": "converted to Deck (first letter, 'U' when unknown); 77% missingness made raw Cabin unusable as-is",
+    "Fare_outliers": "clipped at train 99th percentile (227.53)",
+    "dropped": [
+      "PassengerId",
+      "Name",
+      "Ticket",
+      "Cabin"
+    ]
+  },
+  "engineered_features": [
+    "Title",
+    "Deck",
+    "FamilySize",
+    "IsAlone",
+    "FarePerPerson"
+  ],
+  "numeric_features": [
+    "Pclass",
+    "Age",
+    "SibSp",
+    "Parch",
+    "Fare",
+    "FamilySize",
+    "IsAlone",
+    "FarePerPerson"
+  ],
+  "categorical_features": [
+    "Sex",
+    "Embarked",
+    "Deck",
+    "Title"
+  ],
+  "output_features": [
+    "num__Pclass",
+    "num__Age",
+    "num__SibSp",
+    "num__Parch",
+    "num__Fare",
+    "num__FamilySize",
+    "num__IsAlone",
+    "num__FarePerPerson",
+    "cat__Sex_female",
+    "cat__Sex_male",
+    "cat__Embarked_C",
+    "cat__Embarked_Q",
+    "cat__Embarked_S",
+    "cat__Deck_A",
+    "cat__Deck_B",
+    "cat__Deck_C",
+    "cat__Deck_D",
+    "cat__Deck_E",
+    "cat__Deck_F",
+    "cat__Deck_G",
+    "cat__Deck_T",
+    "cat__Deck_U",
+    "cat__Title_Master",
+    "cat__Title_Miss",
+    "cat__Title_Mr",
+    "cat__Title_Mrs",
+    "cat__Title_Rare"
+  ],
+  "age_group_medians": {
+    "1_female": 35.0,
+    "1_male": 42.0,
+    "2_female": 29.0,
+    "2_male": 30.0,
+    "3_female": 22.0,
+    "3_male": 26.0
+  },
+  "target_balance": {
+    "train": 0.38362760834670945,
+    "val": 0.3880597014925373,
+    "test": 0.3805970149253731
+  }
+}
